@@ -5,6 +5,7 @@
 #define PI 3.1415926535897
 
 void drawCircle(float radius, int solid);
+void drawCircleC(float radius, int solid);
 
 void drawCustomCircle(float startingAngle, float endingAngle, float radius, float spacing, int x, int y, int z, int solid);
 

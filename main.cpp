@@ -71,7 +71,7 @@ void drawLamina(){
 	glPushMatrix();
 	glScalef(1,1,0.1);
 		glRotatef(-27,0,0,1);
-		drawCircle(3,1);
+		drawCircleC(3,1);
 	glPopMatrix();
 	glTranslatef(-2.9,2,-0.1);
 	glScalef(2,2,2);
@@ -153,6 +153,20 @@ void drawLamina(){
 	glPopMatrix();
 }
 
+void drawCabo(){
+	color(0.79,0.83,0.79);
+	glEnable(GL_TEXTURE_2D);
+
+	gluQuadricDrawStyle(cylinder, GLU_FILL);
+    glBindTexture(GL_TEXTURE_2D, texture_id[1]);
+
+    gluQuadricTexture(cylinder, GL_TRUE);
+    gluQuadricNormals(cylinder, GLU_SMOOTH);
+    gluCylinder(cylinder,0.4,0.4,6,64,64);
+	
+	glDisable(GL_TEXTURE_2D); 		
+	//gluCylinder
+}
 void display(void)
 {
     glMatrixMode(GL_MODELVIEW);
@@ -174,7 +188,25 @@ void display(void)
     glPushMatrix();
     	glPushMatrix();
 			drawLamina();
-		glPopMatrix();	
+		glPopMatrix();
+		glTranslatef(-1.2,1.2,0);
+		glScalef(2,1.5,1);
+		glPushMatrix();
+			glRotatef(90,1,0,0);
+			drawCabo();
+		glPopMatrix();
+		
+		glPushMatrix();
+		glRotatef(90,1,0,0);
+			drawCircle(0.4,1);	
+		glPopMatrix();
+		
+		glTranslatef(0,-6,0);
+		glPushMatrix();
+			glRotatef(90,1,0,0);
+			drawCircle(0.4,1);	
+		glPopMatrix();
+		
 	glPopMatrix();
 	//Executa os comandos OpenGL 
 	glFlush();

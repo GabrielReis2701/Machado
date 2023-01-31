@@ -7,8 +7,19 @@
 
 #define PI 3.1415926535897
 
-void drawCircle(float radius, int solid) {
+void drawCircleC(float radius, int solid) {
     float twoPI = 0.7 * PI;
+
+        // GL_TRIANGLE_FAN | GL_POINTS
+    glBegin(!solid ? GL_POINTS : GL_TRIANGLE_FAN);
+        for (float i = 0.0; i <= twoPI; i += 0.001){
+            point((sin(i)*radius), (cos(i)*radius), 0);
+            point((sin(i)*radius), (cos(i)*radius), -0.003);
+            }
+    glEnd();
+}
+void drawCircle(float radius, int solid) {
+    float twoPI = 2 * PI;
 
         // GL_TRIANGLE_FAN | GL_POINTS
     glBegin(!solid ? GL_POINTS : GL_TRIANGLE_FAN);
