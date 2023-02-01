@@ -24,12 +24,12 @@ void initTexture (void)
 {
 	glBindTexture ( GL_TEXTURE_2D, texture_id[0] );
 	image_t temp_image0;
-	tgaLoad  ( "textura_escrituraG.tga", &temp_image0, TGA_FREE | TGA_LOW_QUALITY );
+	tgaLoad  ( "Cabo.tga", &temp_image0, TGA_FREE | TGA_LOW_QUALITY );
 	
-//	glBindTexture ( GL_TEXTURE_2D, texture_id[1] );
-//	image_t temp_image1;
-//	tgaLoad  ( "lado_esq.tga", &temp_image1, TGA_FREE | TGA_LOW_QUALITY );
-//	
+	glBindTexture ( GL_TEXTURE_2D, texture_id[1] );
+	image_t temp_image1;
+	tgaLoad  ( "lamina.tga", &temp_image1, TGA_FREE | TGA_LOW_QUALITY );
+	
 //	glBindTexture ( GL_TEXTURE_2D, texture_id[2] );
 //	image_t temp_image2;
 //	tgaLoad  ( "frente_lado.tga", &temp_image2, TGA_FREE | TGA_LOW_QUALITY );
@@ -68,6 +68,9 @@ void make_tex(void){
 
 void drawLamina(){
 	color(1,0,0);
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
+	glBindTexture ( GL_TEXTURE_2D, texture_id[1] );
 	glPushMatrix();
 	glScalef(1,1,0.1);
 		glRotatef(-27,0,0,1);
@@ -151,14 +154,15 @@ void drawLamina(){
 			glTexCoord2f(0.0, 0.0);glVertex3f(1.81,-0.49,0.1); //Ponto B
 		glEnd();
 	glPopMatrix();
+	glDisable(GL_TEXTURE_2D); 
 }
 
 void drawCabo(){
-	color(0.79,0.83,0.79);
+	color(0.46,0.23,0.21);
 	glEnable(GL_TEXTURE_2D);
 
 	gluQuadricDrawStyle(cylinder, GLU_FILL);
-    glBindTexture(GL_TEXTURE_2D, texture_id[1]);
+    glBindTexture(GL_TEXTURE_2D, texture_id[0]);
 
     gluQuadricTexture(cylinder, GL_TRUE);
     gluQuadricNormals(cylinder, GLU_SMOOTH);
@@ -183,7 +187,7 @@ void display(void)
 	glRotatef(anglex, 1,0,0);
 	glRotatef(anglez, 0,0,1);
     
-    glScalef(10,10,10);
+    glScalef(6,6,6);
     
     glPushMatrix();
     	glPushMatrix();
